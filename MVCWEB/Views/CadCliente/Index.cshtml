@@ -74,6 +74,9 @@
                                 <td>
                                     @Html.ActionLink(" ", "Details", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default class glyphicon glyphicon-eye-open" })
                                 </td>
+                                <td>
+                                    @Html.ActionLink("Excluir ", "Delete", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default" })
+                                </td>
 
                             </tr>
                         }
