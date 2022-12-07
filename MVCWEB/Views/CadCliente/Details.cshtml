@@ -1,0 +1,93 @@
+﻿@model GTIEntity.Cliente
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Visualizar";
+}
+
+<br />
+@using (Html.BeginForm("Visualizar", "CadCliente", FormMethod.Get))
+{
+    <div class="container-fluid" style="max-width: 100%;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" style="text-transform: uppercase;"><a href="#">Clientes Cadastrados</a></li>
+                
+            </ol>
+        </nav>
+        <div class="row">
+            <div class="col-md-8">
+                <div>
+                    <div class="pull-left">
+                        <a class="btn btn-primary" href="@Url.Action("Index", "CadCliente")">
+                            <span title="Detalhes" class="glyphicon glyphicon-menu-left"></span>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <form>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.ClienteId)
+                @Html.TextBoxFor(model => model.ClienteId, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.CPF)
+                @Html.TextBoxFor(model => model.CPF, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.Nome)
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.RG)
+                @Html.TextBoxFor(model => model.RG, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.Data_de_Nascimento)
+                @Html.TextBoxFor(model => model.Data_de_Nascimento, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.Data_Expedicao)
+                @Html.TextAreaFor(model => model.Data_Expedicao, new { @class = "form-control", @rows = "1", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.UF)
+                @Html.TextBoxFor(model => model.UF, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.Sexo)
+                @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control", @readonly = "true" })
+            </div>
+            <div class="form-group col-lg-3">
+                @Html.DisplayNameFor(model => model.Estado_Civil)
+                @Html.TextBoxFor(model => model.Estado_Civil, new { @class = "form-control", @readonly = "true" })
+            </div>
+        </form>
+    </div>
+
+}
+
+<style>
+    fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        padding: 10px;
+        position: relative;
+        border-radius: 4px;
+        background-color: #ffffff;
+        padding-left: 10px !important;
+    }
+
+    legend {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        width: 22%;
+        border: 0px solid #ddd;
+        border-radius: 4px;
+        padding: 5px 5px 5px 10px;
+        background-color: #ffffff;
+    }
+</style>

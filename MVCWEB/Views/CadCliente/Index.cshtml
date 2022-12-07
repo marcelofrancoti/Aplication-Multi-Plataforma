@@ -1,0 +1,102 @@
+﻿@model  IEnumerable<GTIEntity.Cliente>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+@using (Html.BeginForm("Index", "CadCliente", FormMethod.Get))
+{
+    <div class="container-fluid" style="max-width: 100%;">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item" style="text-transform: uppercase;"><a href="#">Cadastro Cliente</a></li>
+                <li class="breadcrumb-item active" style="text-transform: uppercase;" aria-current="page">Consultar</li>
+            </ol>
+        </nav>
+
+
+
+        <br />
+        <div class="table-responsive">
+            <br />
+            <table id="tabela" class="tabela table table-striped table-bordered table-condensed table-hover" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+
+                            @Html.DisplayNameFor(model => model.CPF)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RG)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sexo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Estado_Civil)
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+
+                        if (item.ClienteId != null && item.ClienteId > 0)
+                        {
+                            <tr>
+                                <td id="codigo">
+                                    @Html.DisplayFor(modelItem => item.CPF)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RG)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sexo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Estado_Civil)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(" ", "Details", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default class glyphicon glyphicon-eye-open" })
+                                </td>
+
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @Html.ActionLink("Novo Cliente", "Create", "CadCliente", new { Model }, new { @class = "btn btn-default" })
+
+}
+
+<script>
+    $(document).ready(function () {
+        $('.tabela').dataTable({
+            "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" } }
+        });
+
+    });
+</script>
+
+
+
+
