@@ -5,13 +5,14 @@
 }
 
 <br />
-@using (Html.BeginForm("Visualizar", "CadCliente", FormMethod.Get))
+@using (Html.BeginForm("Edit", "CadCliente", Model.ClienteId))
 {
+
     <div class="container-fluid" style="max-width: 100%;">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item" style="text-transform: uppercase;"><a href="#">Clientes Cadastrados</a></li>
-                
+
             </ol>
         </nav>
         <div class="row">
@@ -65,6 +66,18 @@
                 @Html.TextBoxFor(model => model.Estado_Civil, new { @class = "form-control", @readonly = "true" })
             </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div>
+                <div class="pull-left">
+                    <a class="btn btn-primary" href="@Url.Action("Edit", "CadCliente", new { id = Model.ClienteId })">
+                        <span title="Detalhes" class="glyphicon glyphicon-upload"></span>
+                        Alterar
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 }

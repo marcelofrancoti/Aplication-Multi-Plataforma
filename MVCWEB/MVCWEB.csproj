@@ -200,6 +200,7 @@
     <Content Include="Views\CadCliente\Create.cshtml" />
     <Content Include="Views\CadCliente\Details.cshtml" />
     <Content Include="Views\CadCliente\Index.cshtml" />
+    <Content Include="Views\CadCliente\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

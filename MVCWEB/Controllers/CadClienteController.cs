@@ -72,16 +72,22 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+
+            var cliente = consumoAPICliente.GetClientePorId(id);
+
+            return View(cliente);
         }
 
         // POST: CadCliente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Cliente model)
         {
             try
             {
-                // TODO: Add update logic here
+                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+
+                consumoAPICliente.AlterarCliente(model);
 
                 return RedirectToAction("Index");
             }

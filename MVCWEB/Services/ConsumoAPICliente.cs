@@ -56,5 +56,17 @@ namespace MVCWEB.Services
       
         }
 
+        public void AlterarCliente(Cliente clienteP)
+        {
+            var clienteJson = JsonConvert.SerializeObject(clienteP);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage result = client.PutAsync(@"https://localhost:44314/API/Cliente", byteContent).Result;
+            var varJson = result.Content.ReadAsStringAsync();
+
+        }
+
     }
 }
