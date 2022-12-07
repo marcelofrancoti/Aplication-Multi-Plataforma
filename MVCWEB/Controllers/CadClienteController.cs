@@ -1,4 +1,5 @@
-﻿using MVCWEB.Services;
+﻿using GTIEntity;
+using MVCWEB.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
@@ -53,11 +54,12 @@ namespace MVCWEB.Controllers
 
         // POST: CadCliente/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Cliente model)
         {
             try
             {
-                // TODO: Add insert logic here
+                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+                consumoAPICliente.InserirCliente(model);
 
                 return RedirectToAction("Index");
             }

@@ -21,11 +21,6 @@ namespace MVCWEB.Services
     {
         HttpClient client = new HttpClient();
 
-        public void InsieriCientes(Cliente cliente)
-        {
-
-        }
-
         public Paged<Cliente> GetClientes(string descricao = "", int pageSize = 0, int pageNumber = 0)
         {
             HttpResponseMessage result = client.GetAsync(@"https://localhost:44314/API/Cliente").Result;
@@ -33,7 +28,7 @@ namespace MVCWEB.Services
 
 
             IEnumerable<Cliente> clienteList = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(varJson.Result) as IEnumerable<Cliente>;
-          
+
             Paged<Cliente> paged = new Paged<Cliente>()
             {
                 List = clienteList
@@ -47,6 +42,18 @@ namespace MVCWEB.Services
             var varJson = result.Content.ReadAsStringAsync();
             Cliente cliente = JsonConvert.DeserializeObject<Cliente>(varJson.Result);
             return cliente;
+        }
+
+        public void InserirCliente(Cliente clienteP)
+        { 
+            var clienteJson = JsonConvert.SerializeObject(clienteP);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage result = client.PostAsync(@"https://localhost:44314/API/Cliente", byteContent).Result;
+            var varJson = result.Content.ReadAsStringAsync();
+      
         }
 
     }
