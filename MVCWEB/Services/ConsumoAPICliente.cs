@@ -17,55 +17,51 @@ using MVCWEB.Models;
 
 namespace MVCWEB.Services
 {
-    public class ConsumoAPICliente
+    public class ConsumoAPICliente : IConsumo<Cliente>
     {
-        HttpClient client = new HttpClient();
-
-        public Paged<Cliente> GetClientes(string descricao = "", int pageSize = 0, int pageNumber = 0)
+        HttpClient _client = new HttpClient();
+        public ConsumoAPICliente()
         {
-            HttpResponseMessage result = client.GetAsync(@"https://localhost:44314/API/Cliente").Result;
-            var varJson = result.Content.ReadAsStringAsync();
-
-
-            IEnumerable<Cliente> clienteList = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(varJson.Result) as IEnumerable<Cliente>;
-
-            Paged<Cliente> paged = new Paged<Cliente>()
-            {
-                List = clienteList
-            };
-            return paged;
+            _client.BaseAddress = new Uri("https://localhost:44314/");
         }
 
-        public Cliente GetClientePorId(int id)
+        public IEnumerable<Cliente> Get()
         {
-            HttpResponseMessage result = client.GetAsync(@"https://localhost:44314/API/Cliente?id=" + id).Result;
+            HttpResponseMessage result = _client.GetAsync(@"API/Cliente").Result;
+            var varJson = result.Content.ReadAsStringAsync();
+            IEnumerable<Cliente> clienteList = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(varJson.Result) as IEnumerable<Cliente>;
+            return clienteList;
+        }
+
+        public Cliente GetPorId(int id)
+        {
+            HttpResponseMessage result = _client.GetAsync(@"API/Cliente?id=" + id).Result;
             var varJson = result.Content.ReadAsStringAsync();
             Cliente cliente = JsonConvert.DeserializeObject<Cliente>(varJson.Result);
             return cliente;
         }
 
-        public void InserirCliente(Cliente clienteP)
-        { 
-            var clienteJson = JsonConvert.SerializeObject(clienteP);
-            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
-            var byteContent = new ByteArrayContent(buffer);
-            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            HttpResponseMessage result = client.PostAsync(@"https://localhost:44314/API/Cliente", byteContent).Result;
-            var varJson = result.Content.ReadAsStringAsync();
-      
-        }
-
-        public void AlterarCliente(Cliente clienteP)
+        public void Inserir(Cliente clienteP)
         {
             var clienteJson = JsonConvert.SerializeObject(clienteP);
             var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
             var byteContent = new ByteArrayContent(buffer);
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            HttpResponseMessage result = client.PutAsync(@"https://localhost:44314/API/Cliente", byteContent).Result;
+            HttpResponseMessage result = _client.PostAsync(@"API/Cliente", byteContent).Result;
             var varJson = result.Content.ReadAsStringAsync();
 
+        }
+
+        public void Alterar(Cliente clienteP)
+        {
+            var clienteJson = JsonConvert.SerializeObject(clienteP);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage result = _client.PutAsync(@"API/Cliente", byteContent).Result;
+            var varJson = result.Content.ReadAsStringAsync();
         }
 
     }

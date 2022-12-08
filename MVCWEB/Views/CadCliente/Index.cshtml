@@ -1,12 +1,20 @@
-﻿@model  IEnumerable<GTIEntity.Cliente>
+﻿@model  IEnumerable<MVCWEB.Models.CadastroClienteViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
-<br />
-<br />
+
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+
 @using (Html.BeginForm("Index", "CadCliente", FormMethod.Get))
 {
     <div class="container-fluid" style="max-width: 100%;">
@@ -23,9 +31,9 @@
         <br />
         <div class="table-responsive">
             <br />
-            <table id="tabela" class="tabela table table-striped table-bordered table-condensed table-hover" cellspacing="0">
-                <thead>
-                    <tr>
+            <table id="tabela" class="tabela table table-striped table-bordered table-hover" cellspacing="0">
+                <thead style="color:chocolate; background-color:aquamarine">
+                    <tr style="color:brown; background-color:burlywood">
                         <th>
 
                             @Html.DisplayNameFor(model => model.CPF)
@@ -42,10 +50,12 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Estado_Civil)
                         </th>
-                        <th>
 
-                        </th>
+                        <th>Visualizar</th>
+                        <th></th>
                     </tr>
+                  
+
                 </thead>
 
                 <tbody>
@@ -56,7 +66,7 @@
                         if (item.ClienteId != null && item.ClienteId > 0)
                         {
                             <tr>
-                                <td id="codigo">
+                                <td>
                                     @Html.DisplayFor(modelItem => item.CPF)
                                 </td>
                                 <td>
@@ -77,7 +87,39 @@
                                 <td>
                                     @Html.ActionLink("Excluir ", "Delete", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default" })
                                 </td>
-
+                            </tr>
+                            <tr>
+                                @if (item.listaEndere != null && item.listaEndere.Count() > 0)
+                                {
+                                    foreach (var itemEndereco in item.listaEndere)
+                                    {
+                                        <td colspan="7">
+                                            <h6>Endereco</h6>
+                                            <table id="tabela" class="tabela table table-striped  table-condensed " cellspacing="0">
+                                                <thead style="color:blue; background-color:aquamarine">
+                                                    <tr>
+                                                        <th>
+                                                            Rua;
+                                                        </th>
+                                                        <th>
+                                                            Numero;
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(Model => itemEndereco.Logradouro);
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(Model => itemEndereco.Numero);
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    }
+                                }
                             </tr>
                         }
 
@@ -92,14 +134,10 @@
 }
 
 <script>
-    $(document).ready(function () {
-        $('.tabela').dataTable({
-            "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" } }
-        });
-
+    $(function () {
+        $("#accordion").accordion();
     });
 </script>
-
 
 
 

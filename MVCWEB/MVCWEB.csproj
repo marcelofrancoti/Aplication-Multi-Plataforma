@@ -159,6 +159,8 @@
     <Compile Include="Models\CadastroClienteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ConsumoAPICliente.cs" />
+    <Compile Include="Services\ConsumoAPIClienteEndereco.cs" />
+    <Compile Include="Services\IConsumo.cs" />
     <Compile Include="Services\Paged.cs" />
   </ItemGroup>
   <ItemGroup>

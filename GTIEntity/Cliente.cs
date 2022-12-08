@@ -16,6 +16,10 @@ namespace GTIEntity
 		public string Data_de_Nascimento { get; set; }
 		public string Sexo { get; set; }
 		public string Estado_Civil { get; set; }
-	}
+
+
+
+       
+    }
 }
 

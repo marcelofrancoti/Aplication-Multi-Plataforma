@@ -1,4 +1,5 @@
 ﻿using GTIEntity;
+using MVCWEB.Models;
 using MVCWEB.Services;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,18 @@ namespace MVCWEB.Controllers
     [Route("{action=listar}")]
     public class CadClienteController : Controller
     {
-              ActionResult Index()
+        CadastroClienteViewModel _cadastroClienteViewModel;
+
+        ConsumoAPIClienteEndereco _consumoAPIClienteEndereco;
+        ConsumoAPICliente _consumoAPICliente;
+
+        public CadClienteController()
+        {
+            _consumoAPIClienteEndereco = new ConsumoAPIClienteEndereco();
+            _consumoAPICliente = new ConsumoAPICliente();
+        }
+
+        ActionResult Index()
         {
             return View();
         }
@@ -22,15 +34,28 @@ namespace MVCWEB.Controllers
         [Route("listar")]
         public ActionResult Index(string buscar, int pageNumber = 1)
         {
-            int PageSize = 500;
-            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+            List<CadastroClienteViewModel> _cadastroClienteViewModels = new List<CadastroClienteViewModel>();
 
-            var paged = consumoAPICliente.GetClientes(buscar, PageSize, pageNumber);
-            ViewBag.TotalCount = Math.Ceiling((double)paged.Count / PageSize);
-            ViewBag.PageNumber = pageNumber;
-            ViewBag.SearchData = buscar;
+            var listCliente = _consumoAPICliente.Get();
 
-            return View(paged.List);
+            if (listCliente != null && listCliente.Count() > 0)
+            {
+                foreach (var item in listCliente)
+                {
+                    _cadastroClienteViewModel = new CadastroClienteViewModel();
+                    _cadastroClienteViewModel = item;
+
+                    IEnumerable<ClienteEndereco> listClienteEndereco = _consumoAPIClienteEndereco.GetPorId(item.ClienteId);
+
+                    _cadastroClienteViewModel.listaEndere = new List<ClienteEndereco>();
+                    _cadastroClienteViewModel.listaEndere = listClienteEndereco;
+
+                    _cadastroClienteViewModels.Add(_cadastroClienteViewModel);
+                }
+            }
+
+            return View(_cadastroClienteViewModels);
+
         }
 
 
@@ -38,11 +63,12 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Details/5
         public ActionResult Details(int id)
         {
+            CadastroClienteViewModel cadastroClienteViewModel = new CadastroClienteViewModel();
             ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
 
-            var cliente = consumoAPICliente.GetClientePorId(id);
+            cadastroClienteViewModel = consumoAPICliente.GetPorId(id);
 
-            return View(cliente);
+            return View(cadastroClienteViewModel);
 
         }
 
@@ -58,8 +84,9 @@ namespace MVCWEB.Controllers
         {
             try
             {
+
                 ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-                consumoAPICliente.InserirCliente(model);
+                consumoAPICliente.Inserir(model);
 
                 return RedirectToAction("Index");
             }
@@ -72,11 +99,13 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Edit/5
         public ActionResult Edit(int id)
         {
+            CadastroClienteViewModel cadastroClienteViewModel = new CadastroClienteViewModel();
+
             ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
 
-            var cliente = consumoAPICliente.GetClientePorId(id);
+            cadastroClienteViewModel = consumoAPICliente.GetPorId(id);
 
-            return View(cliente);
+            return View(cadastroClienteViewModel);
         }
 
         // POST: CadCliente/Edit/5
@@ -87,7 +116,7 @@ namespace MVCWEB.Controllers
             {
                 ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
 
-                consumoAPICliente.AlterarCliente(model);
+                consumoAPICliente.Alterar(model);
 
                 return RedirectToAction("Index");
             }

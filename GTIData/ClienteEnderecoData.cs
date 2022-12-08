@@ -35,7 +35,7 @@ namespace GTIData
             });
         }
 
-        public ClienteEndereco BuscarPorId(int EnderecoId)
+        public ClienteEndereco BuscarPorId(int ClienteId)
         {
             return _acessoDataDapper.dbConnectiondbConnection.Query<ClienteEndereco>(@"
                          SELECT [EnderecoId]
@@ -48,7 +48,7 @@ namespace GTIData
                               ,[Cidade]
                               ,[UF]
                           FROM [dbo].[EnderecoCliente]
-                WHERE EnderecoId = @EnderecoId", new { EnderecoId }).FirstOrDefault();
+                WHERE ClienteId = @ClienteId", new { ClienteId }).FirstOrDefault();
         }
 
         public IEnumerable<ClienteEndereco> BuscarTodos()
