@@ -75,7 +75,7 @@ namespace GTIData
         {
             _acessoDataDapper.dbConnectiondbConnection.Execute(@"
                                 DELETE FROM [dbo].[Cliente]
-                                WHERE @ClienteId", new { ClienteId });
+                                WHERE ClienteId = @ClienteId", new { ClienteId });
         }
 
         public void Inserir(Cliente a)

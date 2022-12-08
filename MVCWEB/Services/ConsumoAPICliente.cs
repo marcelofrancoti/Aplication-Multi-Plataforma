@@ -64,5 +64,9 @@ namespace MVCWEB.Services
             var varJson = result.Content.ReadAsStringAsync();
         }
 
+        internal void Excluir(int id)
+        {
+            HttpResponseMessage result = _client.DeleteAsync(@"API/Cliente?id=" + id).Result;
+        }
     }
 }

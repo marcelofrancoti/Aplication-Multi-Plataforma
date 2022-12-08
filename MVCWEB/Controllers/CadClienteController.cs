@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -129,7 +130,9 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+        
+            return View(consumoAPICliente.GetPorId(id));
         }
 
         // POST: CadCliente/Delete/5
@@ -138,7 +141,10 @@ namespace MVCWEB.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+
+                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+
+                consumoAPICliente.Excluir(id);
 
                 return RedirectToAction("Index");
             }
