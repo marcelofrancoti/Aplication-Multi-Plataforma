@@ -1,4 +1,4 @@
-﻿using GTIEntity;
+﻿using Entity;
 using MVCWEB.Models;
 using MVCWEB.Services;
 using System;

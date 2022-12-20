@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GTIEntity\GTIEntity.csproj">
+    <ProjectReference Include="..\GTIEntity\Entity.csproj">
       <Project>{257b7d59-df81-4faf-8511-3a61080cf05d}</Project>
-      <Name>GTIEntity</Name>
+      <Name>Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

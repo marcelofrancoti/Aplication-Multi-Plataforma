@@ -51,13 +51,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GTIData\GTIData.csproj">
+    <ProjectReference Include="..\GTIData\Data.csproj">
       <Project>{51c356b8-4975-465c-af9e-0e4225e1a708}</Project>
-      <Name>GTIData</Name>
+      <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GTIEntity\GTIEntity.csproj">
+    <ProjectReference Include="..\GTIEntity\Entity.csproj">
       <Project>{257B7D59-DF81-4FAF-8511-3A61080CF05D}</Project>
-      <Name>GTIEntity</Name>
+      <Name>Entity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

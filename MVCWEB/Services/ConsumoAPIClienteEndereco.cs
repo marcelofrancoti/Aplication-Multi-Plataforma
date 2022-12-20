@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Web;
-using GTIEntity;
+using Entity;
 
 namespace MVCWEB.Services
 {

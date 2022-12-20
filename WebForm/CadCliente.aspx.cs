@@ -68,7 +68,7 @@ namespace WebForm
         {
             ClienteService clienteService = new ClienteService();
             int idClienteVerifica = int.Parse(hdIdSelecionado.Text);
-            if (idClienteVerifica != null && idClienteVerifica == 0)
+            if (idClienteVerifica == 0)
             {
                 clienteService.Post(new ServiceReferencesCliente.Cliente()
                 {
@@ -163,7 +163,7 @@ namespace WebForm
             ClienteEnderecoService enderecoService = new ClienteEnderecoService();
             int idEnderecoVerifica = int.Parse(lblIDEndereco.Text);
 
-            if (idEnderecoVerifica != null && idEnderecoVerifica == 0)
+            if (idEnderecoVerifica == 0)
             {
                 enderecoService.Post(new ClienteEndereco()
                 {

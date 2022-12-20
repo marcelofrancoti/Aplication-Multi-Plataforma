@@ -1,5 +1,5 @@
 ﻿using Data.Dapper;
-using GTIEntity;
+using Entity;
 
 namespace Business.Interfaces
 {

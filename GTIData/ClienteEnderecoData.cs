@@ -1,11 +1,11 @@
 ﻿using Dapper;
 using Data.Dapper;
-using GTIEntity;
+using Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 
-namespace GTIData
+namespace Data
 {
     public class ClienteEnderecoData : IDataAdmin<ClienteEndereco>
     {

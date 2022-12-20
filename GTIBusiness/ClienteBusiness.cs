@@ -1,6 +1,6 @@
 ﻿using Business.Interfaces;
-using GTIData;
-using GTIEntity;
+using Data;
+using Entity;
 using System.Collections.Generic;
 using System.Threading;
 

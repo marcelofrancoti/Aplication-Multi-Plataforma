@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using GTIEntity;
+using Entity;
 using System.Text;
 using System.Security.Policy;
 using RestSharp;

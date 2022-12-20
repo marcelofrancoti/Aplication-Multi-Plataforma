@@ -1,7 +1,7 @@
 ﻿using Business.Interfaces;
-using GTIData;
+using Data;
 
-using GTIEntity;
+using Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
