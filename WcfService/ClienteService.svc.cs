@@ -1,19 +1,17 @@
-﻿using Business;
-using Business.Interfaces;
+﻿using Business.Interfaces;
 using Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace WcfService
 {
     public class ClienteService : IClienteService
     {
-        IClienteBusiness _clienteBusiness = new ClienteBusiness();
+        IClienteBusiness _clienteBusiness;
+
+        public ClienteService(IClienteBusiness clienteBusiness)
+        {
+            _clienteBusiness = clienteBusiness;
+        }
 
         public IEnumerable<Cliente> Get()
         {

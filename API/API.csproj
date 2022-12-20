@@ -249,16 +249,16 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GTIBusiness\Business.csproj">
-      <Project>{e992d475-b765-498d-9c22-689a3d6e2423}</Project>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{E992D475-B765-498D-9C22-689A3D6E2423}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GTIData\Data.csproj">
+    <ProjectReference Include="..\Data\Data.csproj">
       <Project>{51C356B8-4975-465C-AF9E-0E4225E1A708}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GTIEntity\Entity.csproj">
-      <Project>{257b7d59-df81-4faf-8511-3a61080cf05d}</Project>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{257B7D59-DF81-4FAF-8511-3A61080CF05D}</Project>
       <Name>Entity</Name>
     </ProjectReference>
   </ItemGroup>

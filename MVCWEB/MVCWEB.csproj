@@ -225,7 +225,7 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GTIEntity\Entity.csproj">
+    <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{257B7D59-DF81-4FAF-8511-3A61080CF05D}</Project>
       <Name>Entity</Name>
     </ProjectReference>

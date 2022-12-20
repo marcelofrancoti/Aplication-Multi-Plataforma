@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entity
+﻿namespace Entity
 {
-    public class Cliente
+	public class Cliente
     {
         public int ClienteId { get; set; }
 		public string CPF { get; set; }

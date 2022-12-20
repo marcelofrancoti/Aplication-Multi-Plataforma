@@ -51,11 +51,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GTIData\Data.csproj">
-      <Project>{51c356b8-4975-465c-af9e-0e4225e1a708}</Project>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{51C356B8-4975-465C-AF9E-0E4225E1A708}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GTIEntity\Entity.csproj">
+    <ProjectReference Include="..\Entity\Entity.csproj">
       <Project>{257B7D59-DF81-4FAF-8511-3A61080CF05D}</Project>
       <Name>Entity</Name>
     </ProjectReference>
