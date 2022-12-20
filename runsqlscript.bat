@@ -1,0 +1,1 @@
+sqlcmd -S <ComputerName>\<InstanceName> -i <ScriptPath>
