@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Business;
+using Business.Interfaces;
 using Entity;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -8,12 +9,7 @@ namespace API.Controllers
 
     public class ClienteController : ApiController
     {
-        IClienteBusiness _clienteBusiness;
-
-        public ClienteController(IClienteBusiness clienteBusiness)
-        {
-            _clienteBusiness = clienteBusiness;
-        }
+        IClienteBusiness _clienteBusiness = new ClienteBusiness();
 
         // GET: api/Cliente
         public IEnumerable<Cliente> Get()
@@ -34,7 +30,7 @@ namespace API.Controllers
         }
 
         // PUT: api/Cliente/5
-        public void Put([FromBody] Cliente cliente)
+        public void Put( [FromBody] Cliente cliente)
         {
             _clienteBusiness.Atualizar(cliente);
         }

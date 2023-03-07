@@ -56,8 +56,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Entity\Entity.csproj">
-      <Project>{257B7D59-DF81-4FAF-8511-3A61080CF05D}</Project>
+    <ProjectReference Include="..\GTIEntity\Entity.csproj">
+      <Project>{257b7d59-df81-4faf-8511-3a61080cf05d}</Project>
       <Name>Entity</Name>
     </ProjectReference>
   </ItemGroup>

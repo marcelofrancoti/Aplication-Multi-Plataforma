@@ -1,7 +1,12 @@
-﻿using Business;
-using Business.Interfaces;
+﻿using Business.Interfaces;
+using Business;
 using Entity;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
 
 namespace WcfService
 {
@@ -9,13 +14,7 @@ namespace WcfService
     // OBSERVAÇÃO: Para iniciar o cliente de teste do WCF para testar esse serviço, selecione ClienteEnderecoService.svc ou ClienteEnderecoService.svc.cs no Gerenciador de Soluções e inicie a depuração.
     public class ClienteEnderecoService : IClienteEnderecoService
     {
-        IClienteEnderecoBusiness _clienteBusiness;
-
-        public ClienteEnderecoService(IClienteEnderecoBusiness clienteEnderecoBusiness)
-        {
-            _clienteBusiness = clienteEnderecoBusiness;
-        }
-
+        IClienteEnderecoBusiness _clienteBusiness = new ClienteEnderecoBusiness();
 
         public void Delete(int id)
         {
