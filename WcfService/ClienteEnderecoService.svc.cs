@@ -14,7 +14,7 @@ namespace WcfService
     // OBSERVAÇÃO: Para iniciar o cliente de teste do WCF para testar esse serviço, selecione ClienteEnderecoService.svc ou ClienteEnderecoService.svc.cs no Gerenciador de Soluções e inicie a depuração.
     public class ClienteEnderecoService : IClienteEnderecoService
     {
-        IClienteEnderecoBusiness _clienteBusiness = new ClienteEnderecoBusiness();
+        IClienteEnderecoBusiness _clienteBusiness;
 
         public void Delete(int id)
         {

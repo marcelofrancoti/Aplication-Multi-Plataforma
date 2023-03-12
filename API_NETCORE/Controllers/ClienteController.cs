@@ -16,7 +16,7 @@ namespace API_NETCORE.Controllers
     public class ClienteController : ControllerBase
     {
 
-        IClienteBusiness _clienteBusiness = new ClienteBusiness();
+        IClienteBusiness _clienteBusiness ;
         // GET: api/<ClienteController>
         [HttpGet]
         public IEnumerable<Cliente> Get()
