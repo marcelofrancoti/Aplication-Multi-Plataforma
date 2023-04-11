@@ -8,16 +8,20 @@ namespace Business
 {
     public class ClienteBusiness : IClienteBusiness
     {
+        private readonly ClienteData clienteData;
+
+        public ClienteBusiness()
+        {
+            clienteData = new ClienteData();
+        }
+
         public void Atualizar(Cliente cliente)
         {
-            ClienteData clienteData = new ClienteData();
-          
             clienteData.Atualizar(cliente);
         }
 
         public Cliente BuscarPorId(int Id)
         {
-            ClienteData clienteData = new ClienteData();
             return clienteData.BuscarPorId(Id);
         }
 
@@ -25,27 +29,21 @@ namespace Business
         {
             try
             {
-                ClienteData clienteData = new ClienteData();
                 return clienteData.BuscarTodos();
             }
             catch (System.Exception ex)
             {
-
                 throw;
             }
-      
-   
         }
 
         public void Excluir(int id)
         {
-            ClienteData clienteData = new ClienteData();
             clienteData.Excluir(id);
         }
 
         public void Inserir(Cliente a)
         {
-            ClienteData clienteData = new ClienteData();
             clienteData.Inserir(a);
         }
     }
