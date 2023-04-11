@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="ClienteEndereco.cs" />
+    <Compile Include="EnderecoLocal.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
