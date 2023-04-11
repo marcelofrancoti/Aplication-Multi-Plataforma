@@ -2,8 +2,6 @@
 using Data.Dapper;
 using Entity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
 
 namespace Data
 {

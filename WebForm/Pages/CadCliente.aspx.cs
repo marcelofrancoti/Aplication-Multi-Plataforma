@@ -1,16 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Contracts;
-using System.Linq;
 using System.Net.Http;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using WebForm.ServiceReferencesCliente;
 using WebForm.ServiceReferencesClienteEndereco;
-using static System.Net.WebRequestMethods;
 
 namespace WebForm
 {
@@ -25,7 +17,7 @@ namespace WebForm
 
         private void PopularGridCliente()
         {
-            ServiceReferencesCliente.ClienteService cliente = new ServiceReferencesCliente.ClienteService();
+            ClienteService cliente = new ClienteService();
             gridCliente.DataSource = cliente.Get();
             gridCliente.DataBind(); ;
         }
@@ -120,7 +112,7 @@ namespace WebForm
 
             hdIdSelecionado.Text = gridCliente.SelectedRow.Cells[2].Text;
 
-            ServiceReferencesCliente.ClienteService cliente = new ServiceReferencesCliente.ClienteService();
+            ClienteService cliente = new ClienteService();
             Cliente result = cliente.GetPorId(int.Parse(hdIdSelecionado.Text), true);
 
             txtCPF.Text = result.CPF;
