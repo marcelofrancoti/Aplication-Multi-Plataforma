@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +29,14 @@ namespace API_NETCORE
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+
+            // Read the connection string from appsettings.
+            string dbConnectionString = this.Configuration.GetConnectionString("dbConnection1");
+
+            // Inject IDbConnection, with implementation from SqlConnection class.
+            services.AddTransient<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
+
+             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_NETCORE", Version = "v1" });

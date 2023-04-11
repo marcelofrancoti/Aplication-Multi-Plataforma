@@ -57,6 +57,8 @@ namespace Data
 
         public IEnumerable<Cliente> BuscarTodos()
         {
+
+            
             return _acessoDataDapper.dbConnectiondbConnection.Query<Cliente>(@"
                         SELECT [ClienteId]
                               ,[CPF]

@@ -9,7 +9,7 @@ namespace API.Controllers
 
     public class ClienteController : ApiController
     {
-        IClienteBusiness _clienteBusiness;
+        IClienteBusiness _clienteBusiness = new ClienteBusiness();
 
         // GET: api/Cliente
         public IEnumerable<Cliente> Get()

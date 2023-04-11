@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace API_NETCORE.Controllers
 {
     [Route("api/[controller]")]
@@ -16,7 +14,7 @@ namespace API_NETCORE.Controllers
     public class ClienteController : ControllerBase
     {
 
-        IClienteBusiness _clienteBusiness ;
+        IClienteBusiness _clienteBusiness = new ClienteBusiness();
         // GET: api/<ClienteController>
         [HttpGet]
         public IEnumerable<Cliente> Get()

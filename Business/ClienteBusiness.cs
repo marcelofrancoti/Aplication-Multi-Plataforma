@@ -23,8 +23,18 @@ namespace Business
 
         public IEnumerable<Cliente> BuscarTodos()
         {
-            ClienteData clienteData = new ClienteData();
-            return clienteData.BuscarTodos();
+            try
+            {
+                ClienteData clienteData = new ClienteData();
+                return clienteData.BuscarTodos();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
+      
+   
         }
 
         public void Excluir(int id)
