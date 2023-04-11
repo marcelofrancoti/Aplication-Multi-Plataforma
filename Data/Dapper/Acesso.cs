@@ -11,7 +11,7 @@ namespace Data.Dapper
         private IDbConnection _connection;
         public Acesso()
         {
-            _connection = new SqlConnection("Data Source=MARCELODEV;Initial Catalog=TESTE_GTI;Integrated Security=True;TrustServerCertificate=True;");
+            _connection = new SqlConnection("Data Source=MARCELODEV;Initial Catalog=BancoDados;Integrated Security=True;TrustServerCertificate=True;");
         }
 
         public IDbConnection dbConnectiondbConnection => _connection;
