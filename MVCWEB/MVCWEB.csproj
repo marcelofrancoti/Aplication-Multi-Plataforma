@@ -152,7 +152,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CadClienteController.cs" />
-    <Compile Include="Controllers\ClienteEnderecoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -205,11 +204,9 @@
     <Content Include="Views\CadCliente\Details.cshtml" />
     <Content Include="Views\CadCliente\Index.cshtml" />
     <Content Include="Views\CadCliente\Edit.cshtml" />
-    <Content Include="Views\CadCliente\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ClienteEndereco\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

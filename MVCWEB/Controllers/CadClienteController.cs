@@ -131,27 +131,10 @@ namespace MVCWEB.Controllers
         public ActionResult Delete(int id)
         {
             ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-        
-            return View(consumoAPICliente.GetPorId(id));
-        }
 
-        // POST: CadCliente/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
+            consumoAPICliente.Excluir(id);
 
-                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-
-                consumoAPICliente.Excluir(id);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

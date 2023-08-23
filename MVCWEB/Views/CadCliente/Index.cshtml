@@ -1,150 +1,95 @@
-﻿@model  IEnumerable<MVCWEB.Models.CadastroClienteViewModel>
+﻿@model IEnumerable<MVCWEB.Models.CadastroClienteViewModel>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
-
+<!-- CSS do Bootstrap e jQuery UI -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Cadastro Cliente</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Consultar</li>
+        </ol>
+    </nav>
 
-
-@using (Html.BeginForm("Index", "CadCliente", FormMethod.Get))
-{
-    <div class="container-fluid" style="max-width: 100%;">
-
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item" style="text-transform: uppercase;"><a href="#">Cadastro Cliente</a></li>
-                <li class="breadcrumb-item active" style="text-transform: uppercase;" aria-current="page">Consultar</li>
-            </ol>
-        </nav>
-
-
-
-        <br />
-        <div class="table-responsive">
-            <br />
-            <table id="tabela" class="tabela table table-striped table-bordered table-hover" cellspacing="0">
-                <thead style="color:chocolate; background-color:aquamarine">
-                    <tr style="color:brown; background-color:burlywood">
-                        <th>
-
-                            @Html.DisplayNameFor(model => model.ClienteId)
-                        </th>
-                        <th>
-
-                            @Html.DisplayNameFor(model => model.CPF)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Nome)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.RG)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Sexo)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Estado_Civil)
-                        </th>
-
-                        <th>Visualizar</th>
-                        <th>Excluir</th>
-                    </tr>
-                  
-
-                </thead>
-
-                <tbody>
-
-                    @foreach (var item in Model)
+    <div class="table-responsive">
+        <table id="tabela" class="table table-striped table-bordered">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ClienteId)</th>
+                    <th>@Html.DisplayNameFor(model => model.CPF)</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.RG)</th>
+                    <th>@Html.DisplayNameFor(model => model.Sexo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Estado_Civil)</th>
+                    <th>Visualizar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.ClienteId != null && item.ClienteId > 0)
                     {
-
-                        if (item.ClienteId != null && item.ClienteId > 0)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ClienteId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CPF)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nome)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RG)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Sexo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Estado_Civil)
-                                </td>
-                                <td>
-                                    @Html.ActionLink(" ", "Details", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default class glyphicon glyphicon-eye-open" })
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Excluir ", "Delete", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-default" })
-                                </td>
-                            </tr>
-                            <tr>
-                                @if (item.listaEndere != null && item.listaEndere.Count() > 0)
-                                {
-                                    foreach (var itemEndereco in item.listaEndere)
-                                    {
-                                        <td colspan="7">
-                                            <h6>Endereco</h6>
-                                            <table id="tabela" class="tabela table table-striped  table-condensed " cellspacing="0">
-                                                <thead style="color:blue; background-color:aquamarine">
-                                                    <tr>
-                                                        <th>
-                                                            Rua;
-                                                        </th>
-                                                        <th>
-                                                            Numero;
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            @Html.DisplayFor(Model => itemEndereco.Logradouro);
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(Model => itemEndereco.Numero);
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    }
-                                }
-                            </tr>
-                        }
-
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.ClienteId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.CPF)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>@Html.DisplayFor(modelItem => item.RG)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Sexo)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Estado_Civil)</td>
+                            <td>@Html.ActionLink("Visualizar", "Details", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-info" })</td>
+                            <td>@Html.ActionLink("Excluir", "Delete", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-danger btn-delete" })</td>
+                        </tr>
                     }
-
-                </tbody>
-            </table>
+                }
+            </tbody>
+        </table>
+    </div>
+    @Html.ActionLink("Novo Cliente", "Create", "CadCliente", null, new { @class = "btn btn-success" })
+</div>
+<!-- Modal de Confirmação -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmar Exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Tem certeza que deseja excluir este cliente?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a href="#" class="btn btn-danger" id="confirmDelete">Excluir</a>
+            </div>
         </div>
     </div>
-    @Html.ActionLink("Novo Cliente", "Create", "CadCliente", new { Model }, new { @class = "btn btn-default" })
-
-}
+</div>
 
 <script>
     $(function () {
         $("#accordion").accordion();
+
+        $(document).on('click', '.show-delete-modal', function (e) {
+            e.preventDefault();
+
+            var clienteId = $(this).data('id');
+
+            // Define o link de exclusão para o botão "Excluir" no modal
+            $("#confirmDelete").attr("href", "/CadCliente/Delete?id=" + clienteId);
+
+            // Mostra o modal
+            $('#confirmationModal').modal('show');
+        });
     });
 </script>
-
-
-
