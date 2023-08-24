@@ -56,7 +56,8 @@
                 <asp:ListItem Text="Amasiado" />
             </asp:DropDownList>
         </p>
-        <asp:GridView ID="gridCliente" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gridCliente_SelectedIndexChanged"
+        <asp:GridView runat="server"  ID="gridCliente"></asp:GridView>
+     <%--   <asp:GridView ID="gridCliente" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="gridCliente_SelectedIndexChanged"
             BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px"
             CellPadding="3" CellSpacing="2" AutoGenerateColumns="False">
             <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
@@ -80,7 +81,7 @@
                 <asp:BoundField HeaderText="Sexo" DataField="Sexo" />
                 <asp:BoundField HeaderText="UF" DataField="UF" />
             </Columns>
-        </asp:GridView>
+        </asp:GridView>--%>
     </fieldset>
     <p>
         <asp:Button Text="Atualizar" ID="btnAtualizar" OnClick="btnAtualizar_Click" runat="server" />

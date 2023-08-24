@@ -12,13 +12,14 @@ namespace WebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             PopularGridCliente();
-          //  PopularGridClienteEndereco();
+            //  PopularGridClienteEndereco();
         }
 
         private void PopularGridCliente()
         {
             ClienteService cliente = new ClienteService();
-            gridCliente.DataSource = cliente.Get();
+            var listaCLiente = cliente.Get();
+            gridCliente.DataSource = listaCLiente;
             gridCliente.DataBind(); ;
         }
 

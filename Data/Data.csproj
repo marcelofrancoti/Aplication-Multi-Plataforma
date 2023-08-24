@@ -232,7 +232,6 @@
     <Compile Include="NHibernate\DaoFactory.cs" />
     <Compile Include="NHibernate\NHibernateConfig.cs" />
     <Compile Include="NHibernate\NHibernateDao.cs" />
-    <Compile Include="NHibernate\Map\ProdutoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
