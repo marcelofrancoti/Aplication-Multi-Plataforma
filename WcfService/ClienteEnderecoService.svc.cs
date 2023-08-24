@@ -10,8 +10,6 @@ using System.Text;
 
 namespace WcfService
 {
-    // OBSERVAÇÃO: Você pode usar o comando "Renomear" no menu "Refatorar" para alterar o nome da classe "ClienteEnderecoService" no arquivo de código, svc e configuração ao mesmo tempo.
-    // OBSERVAÇÃO: Para iniciar o cliente de teste do WCF para testar esse serviço, selecione ClienteEnderecoService.svc ou ClienteEnderecoService.svc.cs no Gerenciador de Soluções e inicie a depuração.
     public class ClienteEnderecoService : IClienteEnderecoService
     {
         IClienteEnderecoBusiness _clienteBusiness;

@@ -54,9 +54,7 @@ namespace MVCWEB.Controllers
                     _cadastroClienteViewModels.Add(_cadastroClienteViewModel);
                 }
             }
-
             return View(_cadastroClienteViewModels);
-
         }
 
 
@@ -66,11 +64,8 @@ namespace MVCWEB.Controllers
         {
             CadastroClienteViewModel cadastroClienteViewModel = new CadastroClienteViewModel();
             ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-
             cadastroClienteViewModel = consumoAPICliente.GetPorId(id);
-
             return View(cadastroClienteViewModel);
-
         }
 
         // GET: CadCliente/Create
