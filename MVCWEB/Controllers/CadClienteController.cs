@@ -57,8 +57,6 @@ namespace MVCWEB.Controllers
             return View(_cadastroClienteViewModels);
         }
 
-
-
         // GET: CadCliente/Details/5
         public ActionResult Details(int id)
         {

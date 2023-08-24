@@ -12,7 +12,7 @@ namespace WebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             PopularGridCliente();
-            PopularGridClienteEndereco();
+          //  PopularGridClienteEndereco();
         }
 
         private void PopularGridCliente()
@@ -22,39 +22,39 @@ namespace WebForm
             gridCliente.DataBind(); ;
         }
 
-        private void PopularGridClienteEndereco()
-        {
-            ServiceReferencesClienteEndereco.ClienteEnderecoService clienteEndereco = new ServiceReferencesClienteEndereco.ClienteEnderecoService();
-            gridClienteEndereco.DataSource = clienteEndereco.Get();
-            gridClienteEndereco.DataBind(); ;
-        }
+        //private void PopularGridClienteEndereco()
+        //{
+        //    ServiceReferencesClienteEndereco.ClienteEnderecoService clienteEndereco = new ServiceReferencesClienteEndereco.ClienteEnderecoService();
+        //    gridClienteEndereco.DataSource = clienteEndereco.Get();
+        //    gridClienteEndereco.DataBind(); ;
+        //}
 
-        protected void btnPesquisarCEP_Click(object sender, EventArgs e)
-        {
-            BuscarCep();
-        }
+        //protected void btnPesquisarCEP_Click(object sender, EventArgs e)
+        //{
+        //    BuscarCep();
+        //}
 
-        private void BuscarCep()
-        {
-            HttpClient cep = new HttpClient();
-            var resposta = cep.GetAsync(@"https://viacep.com.br/ws/" + txtCEP.Text.Trim() + "/json/").Result;
+        //private void BuscarCep()
+        //{
+        //    HttpClient cep = new HttpClient();
+        //    var resposta = cep.GetAsync(@"https://viacep.com.br/ws/" + txtCEP.Text.Trim() + "/json/").Result;
 
-            string responseContent = resposta.Content.ReadAsStringAsync().Result;
+        //    string responseContent = resposta.Content.ReadAsStringAsync().Result;
 
-            if (!responseContent.Contains("Http 400"))
-            {
-                EnderecoLocal clienteEndereco = JsonConvert.DeserializeObject<EnderecoLocal>(responseContent);
-
-
-                txtRua.Text = clienteEndereco.logradouro;
-                txtCidade.Text = clienteEndereco.localidade;
-                txtBairro.Text = clienteEndereco.bairro;
-                txtCompleto.Text = clienteEndereco.complemento;
-                ddlUFEnd.Text = clienteEndereco.uf;
-            }
+        //    if (!responseContent.Contains("Http 400"))
+        //    {
+        //        EnderecoLocal clienteEndereco = JsonConvert.DeserializeObject<EnderecoLocal>(responseContent);
 
 
-        }
+        //        txtRua.Text = clienteEndereco.logradouro;
+        //        txtCidade.Text = clienteEndereco.localidade;
+        //        txtBairro.Text = clienteEndereco.bairro;
+        //        txtCompleto.Text = clienteEndereco.complemento;
+        //        ddlUFEnd.Text = clienteEndereco.uf;
+        //    }
+
+
+        //}
 
         protected void btnAtualizar_Click(object sender, EventArgs e)
         {
@@ -126,74 +126,74 @@ namespace WebForm
 
         }
 
-        protected void gridClienteEndereco_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblIDEndereco.Text = string.Empty;
+        //protected void gridClienteEndereco_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    lblIDEndereco.Text = string.Empty;
 
-            lblIDEndereco.Text = gridClienteEndereco.SelectedRow.Cells[1].Text;
+        //    lblIDEndereco.Text = gridClienteEndereco.SelectedRow.Cells[1].Text;
 
-            ClienteEnderecoService enderecoService = new ClienteEnderecoService();
-            ClienteEndereco result = enderecoService.GetPorId(int.Parse(lblIDEndereco.Text), true);
+        //    ClienteEnderecoService enderecoService = new ClienteEnderecoService();
+        //    ClienteEndereco result = enderecoService.GetPorId(int.Parse(lblIDEndereco.Text), true);
 
-            if (result != null)
-            {
-                txtCEP.Text = result.CEP;
-                txtRua.Text = result.Logradouro;
-                txtNumero.Text = result.Numero;
-                txtCompleto.Text = result.Complemento;
-                txtBairro.Text = result.Bairro;
-                txtCidade.Text = result.Cidade;
+        //    if (result != null)
+        //    {
+        //        txtCEP.Text = result.CEP;
+        //        txtRua.Text = result.Logradouro;
+        //        txtNumero.Text = result.Numero;
+        //        txtCompleto.Text = result.Complemento;
+        //        txtBairro.Text = result.Bairro;
+        //        txtCidade.Text = result.Cidade;
 
-            }
+        //    }
 
 
 
-        }
+        //}
 
-        protected void btnAtualizarEndereco_Click(object sender, EventArgs e)
-        {
-            ClienteEnderecoService enderecoService = new ClienteEnderecoService();
-            int idEnderecoVerifica = int.Parse(lblIDEndereco.Text);
+        //protected void btnAtualizarEndereco_Click(object sender, EventArgs e)
+        //{
+        //    ClienteEnderecoService enderecoService = new ClienteEnderecoService();
+        //    int idEnderecoVerifica = int.Parse(lblIDEndereco.Text);
 
-            if (idEnderecoVerifica == 0)
-            {
-                enderecoService.Post(new ClienteEndereco()
-                {
-                    CEP = txtCEP.Text,
-                    Logradouro = txtRua.Text,
-                    Numero = txtNumero.Text,
-                    Complemento = txtCompleto.Text,
-                    Bairro = txtBairro.Text,
-                    Cidade = txtCidade.Text,
-                });
+        //    if (idEnderecoVerifica == 0)
+        //    {
+        //        enderecoService.Post(new ClienteEndereco()
+        //        {
+        //            CEP = txtCEP.Text,
+        //            Logradouro = txtRua.Text,
+        //            Numero = txtNumero.Text,
+        //            Complemento = txtCompleto.Text,
+        //            Bairro = txtBairro.Text,
+        //            Cidade = txtCidade.Text,
+        //        });
 
-                hdIdSelecionado.Text = string.Empty;
-            }
-            else
-            {
+        //        hdIdSelecionado.Text = string.Empty;
+        //    }
+        //    else
+        //    {
 
-                var idEndereco = int.Parse(lblIDEndereco.Text);
-                var idCliente = enderecoService != null ? enderecoService.GetPorId(int.Parse(lblIDEndereco.Text), true).ClienteId : 0;
-                var endereco = enderecoService.GetPorId(idEndereco, true);
-                endereco = new ClienteEndereco()
-                {
-                    CEP = txtCEP.Text,
-                    UF = txtRua.Text,
-                    EnderecoIdSpecified = true,
-                    EnderecoId = idEndereco,
-                    ClienteIdSpecified = true,
-                    ClienteId = idCliente,
-                    Logradouro = txtRua.Text,
-                    Numero = txtNumero.Text,
-                    Complemento = txtCompleto.Text,
-                    Bairro = txtBairro.Text,
-                    Cidade = txtCidade.Text,
-                };
-                enderecoService.Put(endereco);
-                lblIDEndereco.Text = string.Empty;
-            }
+        //        var idEndereco = int.Parse(lblIDEndereco.Text);
+        //        var idCliente = enderecoService != null ? enderecoService.GetPorId(int.Parse(lblIDEndereco.Text), true).ClienteId : 0;
+        //        var endereco = enderecoService.GetPorId(idEndereco, true);
+        //        endereco = new ClienteEndereco()
+        //        {
+        //            CEP = txtCEP.Text,
+        //            UF = txtRua.Text,
+        //            EnderecoIdSpecified = true,
+        //            EnderecoId = idEndereco,
+        //            ClienteIdSpecified = true,
+        //            ClienteId = idCliente,
+        //            Logradouro = txtRua.Text,
+        //            Numero = txtNumero.Text,
+        //            Complemento = txtCompleto.Text,
+        //            Bairro = txtBairro.Text,
+        //            Cidade = txtCidade.Text,
+        //        };
+        //        enderecoService.Put(endereco);
+        //        lblIDEndereco.Text = string.Empty;
+        //    }
 
-            PopularGridClienteEndereco();
-        }
+        //    PopularGridClienteEndereco();
+        //}
     }
 }

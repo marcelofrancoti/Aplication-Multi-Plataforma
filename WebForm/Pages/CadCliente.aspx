@@ -86,7 +86,7 @@
         <asp:Button Text="Atualizar" ID="btnAtualizar" OnClick="btnAtualizar_Click" runat="server" />
     </p>
     <p>
-        <fieldset>
+ <%--       <fieldset>
             <legend>Endereco</legend>
             <p>
                 <asp:Label Text="Codigo Endereco" runat="server" />
@@ -147,12 +147,12 @@
                 </asp:GridView>
             </p>
 
-        </fieldset>
+        </fieldset>--%>
     </p>
-    <p>
+<%--    <p>
         <asp:Button Text="Atualizar" ID="btnAtualizarEndereco" OnClick="btnAtualizarEndereco_Click" runat="server" />
-    </p>
-    <ajaxtoolkit:maskededitextender targetcontrolid="txtCPF" mask="999.999.999-99"
+    </p>--%>
+ <%--   <ajaxtoolkit:maskededitextender targetcontrolid="txtCPF" mask="999.999.999-99"
         messagevalidatortip="true" onfocuscssclass="MaskedEditFocus" oninvalidcssclass="MaskedEditError"
         masktype="Number" inputdirection="LeftToRight" acceptnegative="None" displaymoney="None"
         errortooltipenabled="True" runat="server" id="mskCPF" />
@@ -175,5 +175,5 @@
     <ajaxtoolkit:maskededitextender targetcontrolid="txtRG" mask="99.999.999-9"
         messagevalidatortip="true" onfocuscssclass="MaskedEditFocus" oninvalidcssclass="MaskedEditError"
         masktype="Number" inputdirection="LeftToRight" acceptnegative="None" displaymoney="None"
-        errortooltipenabled="True" runat="server" id="MaskedEditExtender1" />
+        errortooltipenabled="True" runat="server" id="MaskedEditExtender1" />--%>
 </asp:Content>
