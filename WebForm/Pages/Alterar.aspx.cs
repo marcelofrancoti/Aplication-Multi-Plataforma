@@ -7,8 +7,40 @@ namespace WebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                int clienteId;
+                if (int.TryParse(Request.QueryString["ClienteId"], out clienteId))
+                {
+                    ServiceReferencesCliente.ClienteService clienteService = new ServiceReferencesCliente.ClienteService();
+                    ServiceReferencesClienteEndereco.ClienteEnderecoService clienteEnderecoService = new ServiceReferencesClienteEndereco.ClienteEnderecoService();
 
+                    var endereco = clienteEnderecoService.GetPorId(clienteId);
+                    var cliente = clienteService.GetPorId(clienteId);
+
+                    NomeTextBox.Text = cliente.Nome;
+                    CPFTextBox.Text = cliente.CPF;
+                    RGTextBox.Text = cliente.RG;
+                    DataExpedicaoTextBox.Text = cliente.Data_Expedicao;
+                    OrgaoExpedicaoTextBox.Text = cliente.Orgao_Expedicao;
+                    UFTextBox.Text = cliente.UF;
+                    DataNascimentoTextBox.Text = cliente.Data_de_Nascimento;
+                    SexoDropDownList.SelectedValue = cliente.Sexo;
+                    EstadoCivilDropDownList.SelectedValue = cliente.Estado_Civil;
+
+                    CEPTextBox.Text = endereco.CEP;
+                    LogradouroTextBox.Text = endereco.Logradouro;
+                    NumeroTextBox.Text = endereco.Numero;
+                    ComplementoTextBox.Text = endereco.Complemento;
+                    BairroTextBox.Text = endereco.Bairro;
+                    CidadeTextBox.Text = endereco.Cidade;
+                    UFEnderecoTextBox.Text = endereco.UF;
+
+
+                }
+            }
         }
+
 
         protected void VoltarButton_Click(object sender, EventArgs e)
         {

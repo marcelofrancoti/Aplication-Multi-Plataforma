@@ -124,10 +124,10 @@ namespace WebForm.ServiceReferencesCliente {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IClienteService/GetPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public Cliente GetPorId(int id, [System.Xml.Serialization.XmlIgnoreAttribute()] bool idSpecified) {
+        public Cliente GetPorId(int id) {
             object[] results = this.Invoke("GetPorId", new object[] {
-                        id,
-                        idSpecified});
+                        id
+                        });
             return ((Cliente)(results[0]));
         }
         

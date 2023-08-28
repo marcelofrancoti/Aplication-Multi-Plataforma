@@ -124,26 +124,26 @@ namespace WebForm.ServiceReferencesClienteEndereco {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/IClienteEnderecoService/GetPorId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public ClienteEndereco GetPorId(int id, [System.Xml.Serialization.XmlIgnoreAttribute()] bool idSpecified) {
+        public ClienteEndereco GetPorId(int id ) {
             object[] results = this.Invoke("GetPorId", new object[] {
-                        id,
-                        idSpecified});
+                        id
+                        });
             return ((ClienteEndereco)(results[0]));
         }
         
         /// <remarks/>
-        public void GetPorIdAsync(int id, bool idSpecified) {
-            this.GetPorIdAsync(id, idSpecified, null);
+        public void GetPorIdAsync(int id) {
+            this.GetPorIdAsync(id,  null);
         }
         
         /// <remarks/>
-        public void GetPorIdAsync(int id, bool idSpecified, object userState) {
+        public void GetPorIdAsync(int id,  object userState) {
             if ((this.GetPorIdOperationCompleted == null)) {
                 this.GetPorIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPorIdOperationCompleted);
             }
             this.InvokeAsync("GetPorId", new object[] {
                         id,
-                        idSpecified}, this.GetPorIdOperationCompleted, userState);
+                        }, this.GetPorIdOperationCompleted, userState);
         }
         
         private void OnGetPorIdOperationCompleted(object arg) {

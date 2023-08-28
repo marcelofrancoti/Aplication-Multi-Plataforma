@@ -14,12 +14,20 @@ namespace WcfService
     {
         IClienteEnderecoBusiness _clienteBusiness;
 
+        public ClienteEnderecoService()
+        {
+            _clienteBusiness = new ClienteEnderecoBusiness();
+        }
+   
         public void Delete(int id)
         {
             _clienteBusiness.Excluir(id);
         }
 
-        public IEnumerable<ClienteEndereco> Get() => _clienteBusiness.BuscarTodos();
+        public IEnumerable<ClienteEndereco> Get()
+        {
+            return _clienteBusiness.BuscarTodos();
+        }
 
         public ClienteEndereco GetPorId(int id)
         {
