@@ -105,6 +105,15 @@ namespace WebForm
         protected global::System.Web.UI.WebControls.RequiredFieldValidator CPFValidator;
 
         /// <summary>
+        /// Controle CPFRegexValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator CPFRegexValidator;
+
+        /// <summary>
         /// Controle RGLabel.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace WebForm
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RGValidator;
+
+        /// <summary>
+        /// Controle RGRegexValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RGRegexValidator;
 
         /// <summary>
         /// Controle DataExpedicaoLabel.
@@ -312,15 +330,6 @@ namespace WebForm
         protected global::System.Web.UI.WebControls.TextBox ClienteEnderecoIdTextBox;
 
         /// <summary>
-        /// Controle RequiredFieldValidator2.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-
-        /// <summary>
         /// Controle Label3.
         /// </summary>
         /// <remarks>
@@ -337,15 +346,6 @@ namespace WebForm
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EnderecoIdTextBox;
-
-        /// <summary>
-        /// Controle RequiredFieldValidator3.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
         /// <summary>
         /// Controle CEPLabel.

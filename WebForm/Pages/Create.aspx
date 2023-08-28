@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Create" Async="true"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Create.aspx.cs" Inherits="WebForm.Create" %>
+﻿<%@ Page Title="Create" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Create.aspx.cs" Inherits="WebForm.Create" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -38,16 +38,18 @@
         <div class="form-group">
             <asp:Label ID="CPFLabel" runat="server" Text="CPF" CssClass="control-label col-md-2" AssociatedControlID="CPFTextBox" />
             <div class="col-md-10">
-                <asp:TextBox ID="CPFTextBox" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="CPFTextBox" runat="server" CssClass="form-control" MaxLength="14" />
                 <asp:RequiredFieldValidator ID="CPFValidator" runat="server" ControlToValidate="CPFTextBox" ErrorMessage="CPF é obrigatório" CssClass="text-danger" />
+                <asp:RegularExpressionValidator ID="CPFRegexValidator" runat="server" ControlToValidate="CPFTextBox" ValidationExpression="^\d{3}\.\d{3}\.\d{3}-\d{2}$" ErrorMessage="Formato de CPF inválido" CssClass="text-danger" />
             </div>
         </div>
 
         <div class="form-group">
             <asp:Label ID="RGLabel" runat="server" Text="RG" CssClass="control-label col-md-2" AssociatedControlID="RGTextBox" />
             <div class="col-md-10">
-                <asp:TextBox ID="RGTextBox" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="RGTextBox" runat="server" CssClass="form-control" MaxLength="12" />
                 <asp:RequiredFieldValidator ID="RGValidator" runat="server" ControlToValidate="RGTextBox" ErrorMessage="RG é obrigatório" CssClass="text-danger" />
+                <asp:RegularExpressionValidator ID="RGRegexValidator" runat="server" ControlToValidate="RGTextBox" ValidationExpression="^\d{2}\.\d{3}\.\d{3}-\d{1}$" ErrorMessage="Formato de RG inválido" CssClass="text-danger" />
             </div>
         </div>
 
@@ -173,5 +175,14 @@
         </div>
 
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= CPFTextBox.ClientID %>').mask('000.000.000-00');
+            $('#<%= RGTextBox.ClientID %>').mask('00.000.000-0');
+            $('#<%= DataNascimentoTextBox.ClientID %>').mask('99/99/9999');
+            $('#<%= DataExpedicaoTextBox.ClientID %>').mask('99/99/9999');
+            $('#<%= CEPTextBox.ClientID %>').mask('99999-999');
+        });
+    </script>
 </asp:Content>

@@ -78,6 +78,15 @@ namespace WebForm
         protected global::System.Web.UI.WebControls.RequiredFieldValidator CPFValidator;
 
         /// <summary>
+        /// Controle CPFRegexValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator CPFRegexValidator;
+
+        /// <summary>
         /// Controle RGLabel.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace WebForm
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RGValidator;
+
+        /// <summary>
+        /// Controle RGRegexValidator.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RGRegexValidator;
 
         /// <summary>
         /// Controle DataExpedicaoLabel.

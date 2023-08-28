@@ -19,30 +19,35 @@ namespace WebForm
                     var endereco = clienteEnderecoService.GetPorId(clienteId, true);
                     var cliente = clienteService.GetPorId(clienteId, true);
 
-                    ClienteIdTextBox.Text = cliente.ClienteId.ToString();
-                    NomeTextBox.Text = cliente.Nome;
-                    CPFTextBox.Text = cliente.CPF;
-                    RGTextBox.Text = cliente.RG;
-                    DataExpedicaoTextBox.Text = cliente.Data_Expedicao;
-                    OrgaoExpedicaoTextBox.Text = cliente.Orgao_Expedicao;
-                    UFTextBox.Text = cliente.UF;
-                    DataNascimentoTextBox.Text = cliente.Data_de_Nascimento;
-                    SexoDropDownList.SelectedValue = cliente.Sexo;
-                    EstadoCivilDropDownList.SelectedValue = cliente.Estado_Civil;
+
+                    if (cliente != null)
+                    {
+                        ClienteIdTextBox.Text = cliente.ClienteId.ToString();
+                        NomeTextBox.Text = cliente.Nome;
+                        CPFTextBox.Text = cliente.CPF;
+                        RGTextBox.Text = cliente.RG;
+                        DataExpedicaoTextBox.Text = cliente.Data_Expedicao;
+                        OrgaoExpedicaoTextBox.Text = cliente.Orgao_Expedicao;
+                        UFTextBox.Text = cliente.UF;
+                        DataNascimentoTextBox.Text = cliente.Data_de_Nascimento;
+                        SexoDropDownList.SelectedValue = cliente.Sexo;
+                        EstadoCivilDropDownList.SelectedValue = cliente.Estado_Civil;
+                    }
 
 
 
-                    ClienteEnderecoIdTextBox.Text = endereco.ClienteId.ToString();
-                    EnderecoIdTextBox.Text = endereco.EnderecoId.ToString();
-                    CEPTextBox.Text = endereco.CEP;
-                    LogradouroTextBox.Text = endereco.Logradouro;
-                    NumeroTextBox.Text = endereco.Numero;
-                    ComplementoTextBox.Text = endereco.Complemento;
-                    BairroTextBox.Text = endereco.Bairro;
-                    CidadeTextBox.Text = endereco.Cidade;
-                    UFEnderecoTextBox.Text = endereco.UF;
-
-
+                    if (endereco != null)
+                    {
+                        ClienteEnderecoIdTextBox.Text = endereco.ClienteId.ToString();
+                        EnderecoIdTextBox.Text = endereco.EnderecoId.ToString();
+                        CEPTextBox.Text = endereco.CEP;
+                        LogradouroTextBox.Text = endereco.Logradouro;
+                        NumeroTextBox.Text = endereco.Numero;
+                        ComplementoTextBox.Text = endereco.Complemento;
+                        BairroTextBox.Text = endereco.Bairro;
+                        CidadeTextBox.Text = endereco.Cidade;
+                        UFEnderecoTextBox.Text = endereco.UF;
+                    }
                 }
             }
         }
@@ -50,7 +55,7 @@ namespace WebForm
 
         protected void VoltarButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/CadCliente/Index");
+            Response.Redirect("~/pages/Visualizar");
         }
 
         protected void SalvarButton_Click(object sender, EventArgs e)
@@ -79,9 +84,10 @@ namespace WebForm
             cliente.Sexo = SexoDropDownList.SelectedValue;
             cliente.Estado_Civil = EstadoCivilDropDownList.SelectedValue;
 
+            clienteService.Put(cliente);
+
             clienteEndereco.ClienteIdSpecified = true;
-            clienteEndereco.ClienteId = int.Parse(ClienteEnderecoIdTextBox.Text);
-            clienteEndereco.EnderecoId = int.Parse(EnderecoIdTextBox.Text);
+            clienteEndereco.ClienteId = int.Parse(ClienteIdTextBox.Text);
             clienteEndereco.CEP = CEPTextBox.Text;
             clienteEndereco.Logradouro = LogradouroTextBox.Text;
             clienteEndereco.Numero = NumeroTextBox.Text;
@@ -90,8 +96,15 @@ namespace WebForm
             clienteEndereco.Cidade = CidadeTextBox.Text;
             clienteEndereco.UF = UFEnderecoTextBox.Text;
 
-            clienteService.Put(cliente);
-            clienteEnderecoService.Put(clienteEndereco);
+            if (!string.IsNullOrEmpty(EnderecoIdTextBox.Text))
+            {
+                clienteEndereco.EnderecoId = int.Parse(EnderecoIdTextBox.Text);
+                clienteEnderecoService.Put(clienteEndereco);
+            }
+            else
+            {
+                clienteEnderecoService.Post(clienteEndereco);
+            }
 
             Response.Redirect("~/pages/Visualizar");
         }

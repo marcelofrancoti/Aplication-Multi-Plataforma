@@ -12,8 +12,7 @@ namespace WebForm
 
         protected void VoltarButton_Click(object sender, EventArgs e)
         {
-            // Redirecionar para a página desejada
-            Response.Redirect("~/CadCliente/Index");
+            Response.Redirect("~/pages/Visualizar");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
