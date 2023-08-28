@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Create" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Alterar.aspx.cs" Inherits="WebForm.Create" %>
+﻿<%@ Page Title="Alterar" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Alterar.aspx.cs" Inherits="WebForm.Alterar" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
