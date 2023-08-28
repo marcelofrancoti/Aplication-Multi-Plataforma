@@ -99,6 +99,8 @@ namespace WebForm
             if (!string.IsNullOrEmpty(EnderecoIdTextBox.Text))
             {
                 clienteEndereco.EnderecoId = int.Parse(EnderecoIdTextBox.Text);
+                clienteEndereco.EnderecoIdSpecified = true;
+
                 clienteEnderecoService.Put(clienteEndereco);
             }
             else
