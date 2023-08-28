@@ -37,18 +37,6 @@ namespace MVCWEB.Services
             return clienteList.Where(f => f.ClienteId == id).ToList();
         }
 
-        public void Inserir(ClienteEndereco clienteEnderecoP)
-        {
-            var clienteJson = JsonConvert.SerializeObject(clienteEnderecoP);
-            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
-            var byteContent = new ByteArrayContent(buffer);
-            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            HttpResponseMessage result = _client.PostAsync(@"API/ClienteEndereco", byteContent).Result;
-            var varJson = result.Content.ReadAsStringAsync();
-
-        }
-
         public void Alterar(ClienteEndereco clienteEnderecoP)
         {
             var clienteJson = JsonConvert.SerializeObject(clienteEnderecoP);
@@ -64,6 +52,17 @@ namespace MVCWEB.Services
         ClienteEndereco IConsumo<ClienteEndereco>.GetPorId(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public HttpResponseMessage InserirHttpResponse(ClienteEndereco Parametro)
+        {
+            var clienteJson = JsonConvert.SerializeObject(Parametro);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage result = _client.PostAsync(@"API/ClienteEndereco", byteContent).Result;
+            return result;
         }
     }
 }

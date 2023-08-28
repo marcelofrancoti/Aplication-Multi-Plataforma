@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Net.Http;
+using Entity;
 
 namespace MVCWEB.Services
 {
@@ -12,8 +13,7 @@ namespace MVCWEB.Services
 
         T GetPorId(int id);
 
-        void Inserir(T Parametro);
-
         void Alterar(T Parametro);
+        HttpResponseMessage InserirHttpResponse(T Parametro);
     }
 }

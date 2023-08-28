@@ -19,6 +19,8 @@ namespace MVCWEB.Models
         public string Sexo { get; set; }
         public string Estado_Civil { get; set; }
 
+        public ClienteEndereco ClienteEndereco { get; set; }
+
         public IEnumerable<ClienteEndereco> listaEndere { get; set; }
 
         public static implicit operator CadastroClienteViewModel(Cliente v)

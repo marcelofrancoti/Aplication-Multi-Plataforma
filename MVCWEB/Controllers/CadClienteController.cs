@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,7 +18,6 @@ namespace MVCWEB.Controllers
     public class CadClienteController : Controller
     {
         CadastroClienteViewModel _cadastroClienteViewModel;
-
         ConsumoAPIClienteEndereco _consumoAPIClienteEndereco;
         ConsumoAPICliente _consumoAPICliente;
 
@@ -60,10 +61,11 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Details/5
         public ActionResult Details(int id)
         {
-            CadastroClienteViewModel cadastroClienteViewModel = new CadastroClienteViewModel();
-            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-            cadastroClienteViewModel = consumoAPICliente.GetPorId(id);
-            return View(cadastroClienteViewModel);
+
+            _cadastroClienteViewModel = _consumoAPICliente.GetPorId(id);
+            _cadastroClienteViewModel.ClienteEndereco = _consumoAPIClienteEndereco.GetPorId(id).FirstOrDefault();
+
+            return View(_cadastroClienteViewModel);
         }
 
         // GET: CadCliente/Create
@@ -74,43 +76,62 @@ namespace MVCWEB.Controllers
 
         // POST: CadCliente/Create
         [HttpPost]
-        public ActionResult Create(Cliente model)
+        public async Task<ActionResult> Create(CadastroClienteViewModel model)
         {
             try
             {
+                HttpResponseMessage resposta = _consumoAPICliente.InserirHttpResponse(model.ToEntity());
 
-                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-                consumoAPICliente.Inserir(model);
+                if (resposta.IsSuccessStatusCode)
+                {
+                    CadastroClienteViewModel clienteFiltrado = _consumoAPICliente.Get().Where(f => f.CPF.Equals(model.CPF)).Select(f => f).FirstOrDefault();
+                    model.ClienteEndereco.ClienteId = clienteFiltrado.ClienteId;
 
-                return RedirectToAction("Index");
+                    HttpResponseMessage respostaEndereco = _consumoAPIClienteEndereco.InserirHttpResponse(model.ClienteEndereco);
+                    if (resposta.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        string erro = await resposta.Content.ReadAsStringAsync();
+                        return View("Error", new ErrorViewModel { ErrorMessage = erro });
+                    }
+
+                }
+                else
+                {
+                    string erro = await resposta.Content.ReadAsStringAsync();
+                    return View("Error", new ErrorViewModel { ErrorMessage = erro });
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View("Error", new ErrorViewModel { ErrorMessage = ex.Message });
             }
         }
+
+
 
         // GET: CadCliente/Edit/5
         public ActionResult Edit(int id)
         {
-            CadastroClienteViewModel cadastroClienteViewModel = new CadastroClienteViewModel();
-
-            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-
-            cadastroClienteViewModel = consumoAPICliente.GetPorId(id);
-
-            return View(cadastroClienteViewModel);
+            _cadastroClienteViewModel = _consumoAPICliente.GetPorId(id);
+            _cadastroClienteViewModel.ClienteEndereco = _consumoAPIClienteEndereco.GetPorId(id).FirstOrDefault();
+            return View(_cadastroClienteViewModel);
         }
 
         // POST: CadCliente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Cliente model)
+        public ActionResult Edit(int id, CadastroClienteViewModel model)
         {
             try
             {
-                ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
+                _consumoAPICliente.Alterar(model.ToEntity());
+                model.ClienteEndereco.ClienteId = model.ClienteId;
 
-                consumoAPICliente.Alterar(model);
+
+                _consumoAPIClienteEndereco.Alterar(model.ClienteEndereco);
 
                 return RedirectToAction("Index");
             }
@@ -123,11 +144,15 @@ namespace MVCWEB.Controllers
         // GET: CadCliente/Delete/5
         public ActionResult Delete(int id)
         {
-            ConsumoAPICliente consumoAPICliente = new ConsumoAPICliente();
-
-            consumoAPICliente.Excluir(id);
+            _consumoAPICliente.Excluir(id);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult getEndereco(int id)
+        {
+            IEnumerable<ClienteEndereco> listClienteEndereco = _consumoAPIClienteEndereco.GetPorId(id);
+            return Json(listClienteEndereco, JsonRequestBehavior.AllowGet);
         }
     }
 }

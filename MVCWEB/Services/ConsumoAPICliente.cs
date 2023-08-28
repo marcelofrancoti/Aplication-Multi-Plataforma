@@ -17,7 +17,7 @@ using MVCWEB.Models;
 
 namespace MVCWEB.Services
 {
-    public class ConsumoAPICliente : IConsumo<Cliente>
+    public class ConsumoAPICliente : IConsumo<CadastroClienteViewModel>
     {
         HttpClient _client = new HttpClient();
         public ConsumoAPICliente()
@@ -25,15 +25,15 @@ namespace MVCWEB.Services
             _client.BaseAddress = new Uri("https://localhost:44314/");
         }
 
-        public IEnumerable<Cliente> Get()
+        public IEnumerable<CadastroClienteViewModel> Get()
         {
             HttpResponseMessage result = _client.GetAsync(@"API/Cliente").Result;
             var varJson = result.Content.ReadAsStringAsync();
-            IEnumerable<Cliente> clienteList = JsonConvert.DeserializeObject<IEnumerable<Cliente>>(varJson.Result) as IEnumerable<Cliente>;
+            IEnumerable<CadastroClienteViewModel> clienteList = JsonConvert.DeserializeObject<IEnumerable<CadastroClienteViewModel>>(varJson.Result) as IEnumerable<CadastroClienteViewModel>;
             return clienteList;
         }
 
-        public Cliente GetPorId(int id)
+        public CadastroClienteViewModel GetPorId(int id)
         {
             HttpResponseMessage result = _client.GetAsync(@"API/Cliente?id=" + id).Result;
             var varJson = result.Content.ReadAsStringAsync();
@@ -41,7 +41,7 @@ namespace MVCWEB.Services
             return cliente;
         }
 
-        public void Inserir(Cliente clienteP)
+        public void Inserir(CadastroClienteViewModel clienteP)
         {
             var clienteJson = JsonConvert.SerializeObject(clienteP);
             var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
@@ -49,11 +49,21 @@ namespace MVCWEB.Services
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             HttpResponseMessage result = _client.PostAsync(@"API/Cliente", byteContent).Result;
-            var varJson = result.Content.ReadAsStringAsync();
+        }
+
+        public HttpResponseMessage InserirHttpResponse(CadastroClienteViewModel clienteP)
+        {
+            var clienteJson = JsonConvert.SerializeObject(clienteP);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            HttpResponseMessage result = _client.PostAsync(@"API/Cliente", byteContent).Result;
+            return result;
 
         }
 
-        public void Alterar(Cliente clienteP)
+        public void Alterar(CadastroClienteViewModel clienteP)
         {
             var clienteJson = JsonConvert.SerializeObject(clienteP);
             var buffer = System.Text.Encoding.UTF8.GetBytes(clienteJson);
@@ -68,5 +78,7 @@ namespace MVCWEB.Services
         {
             HttpResponseMessage result = _client.DeleteAsync(@"API/Cliente?id=" + id).Result;
         }
+   
+
     }
 }

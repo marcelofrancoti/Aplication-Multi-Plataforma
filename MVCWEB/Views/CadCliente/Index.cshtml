@@ -31,12 +31,13 @@
                     <th>@Html.DisplayNameFor(model => model.Estado_Civil)</th>
                     <th>Visualizar</th>
                     <th>Excluir</th>
+                    <th>Endereços</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    if (item.ClienteId != null && item.ClienteId > 0)
+                    if (item.ClienteId > 0)
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.ClienteId)</td>
@@ -47,6 +48,8 @@
                             <td>@Html.DisplayFor(modelItem => item.Estado_Civil)</td>
                             <td>@Html.ActionLink("Visualizar", "Details", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-info" })</td>
                             <td>@Html.ActionLink("Excluir", "Delete", "CadCliente", new { id = item.ClienteId }, new { @class = "btn btn-danger btn-delete" })</td>
+                            <td><button class="btn btn-warning show-address-modal" data-id="@item.ClienteId">Visualizar Endereços</button></td>
+
                         </tr>
                     }
                 }
@@ -55,7 +58,26 @@
     </div>
     @Html.ActionLink("Novo Cliente", "Create", "CadCliente", null, new { @class = "btn btn-success" })
 </div>
-<!-- Modal de Confirmação -->
+
+
+<div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addressModalLabel">Endereços do Cliente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -77,19 +99,31 @@
 </div>
 
 <script>
-    $(function () {
-        $("#accordion").accordion();
 
-        $(document).on('click', '.show-delete-modal', function (e) {
+
+    $(function () {
+        $(document).on('click', '.show-address-modal', function (e) {
             e.preventDefault();
 
             var clienteId = $(this).data('id');
 
-            // Define o link de exclusão para o botão "Excluir" no modal
-            $("#confirmDelete").attr("href", "/CadCliente/Delete?id=" + clienteId);
-
-            // Mostra o modal
-            $('#confirmationModal').modal('show');
+            $.ajax({
+                url: '/CadCliente/getEndereco',
+                type: 'GET',
+                data: { id: clienteId },
+                success: function (data) {
+                    var addressList = '';
+                    $.each(data, function (index, item) {
+                        addressList += '<li>' + item.Logradouro + ', ' + item.Numero + ', ' + item.Bairro + ' - ' + item.Cidade + '/' + item.UF + '</li>';
+                    });
+                    $('#addressModal .modal-body').html('<ul>' + addressList + '</ul>');
+                    $('#addressModal').modal('show');
+                },
+                error: function (error) {
+                    $('#addressModal').modal('show');
+                }
+            });
         });
     });
+
 </script>
