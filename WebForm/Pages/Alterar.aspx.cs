@@ -5,19 +5,21 @@ namespace WebForm
 {
     public partial class Alterar : System.Web.UI.Page
     {
+        public int clienteId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int clienteId;
+
                 if (int.TryParse(Request.QueryString["ClienteId"], out clienteId))
                 {
                     ServiceReferencesCliente.ClienteService clienteService = new ServiceReferencesCliente.ClienteService();
                     ServiceReferencesClienteEndereco.ClienteEnderecoService clienteEnderecoService = new ServiceReferencesClienteEndereco.ClienteEnderecoService();
 
-                    var endereco = clienteEnderecoService.GetPorId(clienteId);
-                    var cliente = clienteService.GetPorId(clienteId);
+                    var endereco = clienteEnderecoService.GetPorId(clienteId, true);
+                    var cliente = clienteService.GetPorId(clienteId, true);
 
+                    ClienteIdTextBox.Text = cliente.ClienteId.ToString();
                     NomeTextBox.Text = cliente.Nome;
                     CPFTextBox.Text = cliente.CPF;
                     RGTextBox.Text = cliente.RG;
@@ -28,6 +30,10 @@ namespace WebForm
                     SexoDropDownList.SelectedValue = cliente.Sexo;
                     EstadoCivilDropDownList.SelectedValue = cliente.Estado_Civil;
 
+
+
+                    ClienteEnderecoIdTextBox.Text = endereco.ClienteId.ToString();
+                    EnderecoIdTextBox.Text = endereco.EnderecoId.ToString();
                     CEPTextBox.Text = endereco.CEP;
                     LogradouroTextBox.Text = endereco.Logradouro;
                     NumeroTextBox.Text = endereco.Numero;
@@ -44,18 +50,25 @@ namespace WebForm
 
         protected void VoltarButton_Click(object sender, EventArgs e)
         {
-            // Redirecionar para a página desejada
             Response.Redirect("~/CadCliente/Index");
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void SalvarButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void alterarCliente_Click(object sender, EventArgs e)
+        {
+            clienteId = int.Parse(Request.QueryString["ClienteId"]);
             ServiceReferencesCliente.ClienteService clienteService = new ServiceReferencesCliente.ClienteService();
             ServiceReferencesClienteEndereco.ClienteEnderecoService clienteEnderecoService = new ServiceReferencesClienteEndereco.ClienteEnderecoService();
 
             ServiceReferencesCliente.Cliente cliente = new ServiceReferencesCliente.Cliente();
             ServiceReferencesClienteEndereco.ClienteEndereco clienteEndereco = new ServiceReferencesClienteEndereco.ClienteEndereco();
 
+            cliente.ClienteIdSpecified = true;
+            cliente.ClienteId = int.Parse(ClienteIdTextBox.Text);
             cliente.Nome = NomeTextBox.Text;
             cliente.CPF = CPFTextBox.Text;
             cliente.RG = RGTextBox.Text;
@@ -66,6 +79,9 @@ namespace WebForm
             cliente.Sexo = SexoDropDownList.SelectedValue;
             cliente.Estado_Civil = EstadoCivilDropDownList.SelectedValue;
 
+            clienteEndereco.ClienteIdSpecified = true;
+            clienteEndereco.ClienteId = int.Parse(ClienteEnderecoIdTextBox.Text);
+            clienteEndereco.EnderecoId = int.Parse(EnderecoIdTextBox.Text);
             clienteEndereco.CEP = CEPTextBox.Text;
             clienteEndereco.Logradouro = LogradouroTextBox.Text;
             clienteEndereco.Numero = NumeroTextBox.Text;
@@ -77,8 +93,7 @@ namespace WebForm
             clienteService.Put(cliente);
             clienteEnderecoService.Put(clienteEndereco);
 
-            Response.Redirect("~/CadCliente/Index");
+            Response.Redirect("~/pages/Visualizar");
         }
-
     }
 }

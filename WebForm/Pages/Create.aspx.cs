@@ -50,7 +50,7 @@ namespace WebForm
 
             clienteEnderecoService.Post(clienteEndereco);
 
-            Response.Redirect("~/CadCliente/Index");
+            Response.Redirect("~/pages/Visualizar");
         }
 
     }

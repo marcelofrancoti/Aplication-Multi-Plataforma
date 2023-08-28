@@ -28,6 +28,14 @@
         <h3>Dados do Cliente</h3>
 
         <div class="form-group">
+            <asp:Label ID="Label1" runat="server" Text="Cliente Id" CssClass="control-label col-md-2" AssociatedControlID="ClienteIdTextBox" />
+            <div class="col-md-10">
+                <asp:TextBox ID="ClienteIdTextBox" runat="server" CssClass="form-control" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ClienteIdTextBox" ErrorMessage="ClienteId é obrigatório" CssClass="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <asp:Label ID="NomeLabel" runat="server" Text="Nome" CssClass="control-label col-md-2" AssociatedControlID="NomeTextBox" />
             <div class="col-md-10">
                 <asp:TextBox ID="NomeTextBox" runat="server" CssClass="form-control" />
@@ -112,66 +120,81 @@
         <h3>Endereço</h3>
 
         <div class="form-group">
-            <asp:Label ID="CEPLabel" runat="server" Text="CEP" CssClass="control-label col-md-2" AssociatedControlID="CEPTextBox" />
+            <asp:Label ID="Label2" runat="server" Text="Cliente Id" CssClass="control-label col-md-2" AssociatedControlID="ClienteEnderecoIdTextBox" />
             <div class="col-md-10">
-                <asp:TextBox ID="CEPTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="CEPValidator" runat="server" ControlToValidate="CEPTextBox" ErrorMessage="CEP é obrigatório" CssClass="text-danger" />
+                <asp:TextBox ID="ClienteEnderecoIdTextBox" runat="server" CssClass="form-control" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="ClienteEnderecoIdTextBox" ErrorMessage="ClienteEnderecoId é obrigatório" CssClass="text-danger" />
             </div>
-        </div>
 
-        <div class="form-group">
-            <asp:Label ID="LogradouroLabel" runat="server" Text="Logradouro" CssClass="control-label col-md-2" AssociatedControlID="LogradouroTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="LogradouroTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="LogradouroValidator" runat="server" ControlToValidate="LogradouroTextBox" ErrorMessage="Logradouro é obrigatório" CssClass="text-danger" />
+
+            <div class="form-group">
+                <asp:Label ID="Label3" runat="server" Text="Cliente Id" CssClass="control-label col-md-2" AssociatedControlID="EnderecoIdTextBox" />
+                <div class="col-md-10">
+                    <asp:TextBox ID="EnderecoIdTextBox" runat="server" CssClass="form-control" />
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="EnderecoIdTextBox" ErrorMessage="Endereco Id é obrigatório" CssClass="text-danger" />
+                </div>
+
+
+                <div class="form-group">
+                    <asp:Label ID="CEPLabel" runat="server" Text="CEP" CssClass="control-label col-md-2" AssociatedControlID="CEPTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="CEPTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="CEPValidator" runat="server" ControlToValidate="CEPTextBox" ErrorMessage="CEP é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="LogradouroLabel" runat="server" Text="Logradouro" CssClass="control-label col-md-2" AssociatedControlID="LogradouroTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="LogradouroTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="LogradouroValidator" runat="server" ControlToValidate="LogradouroTextBox" ErrorMessage="Logradouro é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="NumeroLabel" runat="server" Text="Número" CssClass="control-label col-md-2" AssociatedControlID="NumeroTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="NumeroTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="NumeroValidator" runat="server" ControlToValidate="NumeroTextBox" ErrorMessage="Número é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="ComplementoLabel" runat="server" Text="Complemento" CssClass="control-label col-md-2" AssociatedControlID="ComplementoTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="ComplementoTextBox" runat="server" CssClass="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="BairroLabel" runat="server" Text="Bairro" CssClass="control-label col-md-2" AssociatedControlID="BairroTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="BairroTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="BairroValidator" runat="server" ControlToValidate="BairroTextBox" ErrorMessage="Bairro é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="CidadeLabel" runat="server" Text="Cidade" CssClass="control-label col-md-2" AssociatedControlID="CidadeTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="CidadeTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="CidadeValidator" runat="server" ControlToValidate="CidadeTextBox" ErrorMessage="Cidade é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <asp:Label ID="UFEnderecoLabel" runat="server" Text="UF" CssClass="control-label col-md-2" AssociatedControlID="UFEnderecoTextBox" />
+                    <div class="col-md-10">
+                        <asp:TextBox ID="UFEnderecoTextBox" runat="server" CssClass="form-control" />
+                        <asp:RequiredFieldValidator ID="UFEnderecoValidator" runat="server" ControlToValidate="UFEnderecoTextBox" ErrorMessage="UF é obrigatório" CssClass="text-danger" />
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="btn-group">
+                        <asp:Button ID="alterarCliente" runat="server" OnClick="alterarCliente_Click" Text="Alterar" CssClass="btn btn-primary" />
+                    </div>
+                </div>
+
             </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="NumeroLabel" runat="server" Text="Número" CssClass="control-label col-md-2" AssociatedControlID="NumeroTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="NumeroTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="NumeroValidator" runat="server" ControlToValidate="NumeroTextBox" ErrorMessage="Número é obrigatório" CssClass="text-danger" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="ComplementoLabel" runat="server" Text="Complemento" CssClass="control-label col-md-2" AssociatedControlID="ComplementoTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="ComplementoTextBox" runat="server" CssClass="form-control" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="BairroLabel" runat="server" Text="Bairro" CssClass="control-label col-md-2" AssociatedControlID="BairroTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="BairroTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="BairroValidator" runat="server" ControlToValidate="BairroTextBox" ErrorMessage="Bairro é obrigatório" CssClass="text-danger" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="CidadeLabel" runat="server" Text="Cidade" CssClass="control-label col-md-2" AssociatedControlID="CidadeTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="CidadeTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="CidadeValidator" runat="server" ControlToValidate="CidadeTextBox" ErrorMessage="Cidade é obrigatório" CssClass="text-danger" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <asp:Label ID="UFEnderecoLabel" runat="server" Text="UF" CssClass="control-label col-md-2" AssociatedControlID="UFEnderecoTextBox" />
-            <div class="col-md-10">
-                <asp:TextBox ID="UFEnderecoTextBox" runat="server" CssClass="form-control" />
-                <asp:RequiredFieldValidator ID="UFEnderecoValidator" runat="server" ControlToValidate="UFEnderecoTextBox" ErrorMessage="UF é obrigatório" CssClass="text-danger" />
-            </div>
-        </div>
-
-        <div class="col-md-12">
-            <div class="btn-group">
-                <asp:Button ID="SalvarButton" runat="server" OnClick="btnSubmit_Click" Text="Alterar" CssClass="btn btn-primary" />
-            </div>
-        </div>
-
-    </div>
-
 </asp:Content>
