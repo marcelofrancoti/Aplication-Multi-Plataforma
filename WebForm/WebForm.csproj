@@ -109,7 +109,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\CadCliente.aspx" />
+    <Content Include="Pages\Visualizar.aspx" />
+    <Content Include="Pages\Alterar.aspx" />
+    <Content Include="Pages\Create.aspx" />
+    <Content Include="Pages\DetalhesCliente.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -171,12 +174,33 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Pages\CadCliente.aspx.cs">
-      <DependentUpon>CadCliente.aspx</DependentUpon>
+    <Compile Include="Pages\Visualizar.aspx.cs">
+      <DependentUpon>Visualizar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\CadCliente.aspx.designer.cs">
-      <DependentUpon>CadCliente.aspx</DependentUpon>
+    <Compile Include="Pages\Visualizar.aspx.designer.cs">
+      <DependentUpon>Visualizar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Alterar.aspx.cs">
+      <DependentUpon>Alterar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Alterar.aspx.designer.cs">
+      <DependentUpon>Alterar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DetalhesCliente.aspx.cs">
+      <DependentUpon>DetalhesCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\DetalhesCliente.aspx.designer.cs">
+      <DependentUpon>DetalhesCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
